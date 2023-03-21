@@ -1,0 +1,90 @@
+.coca-cola-logo {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    border-radius: 20px;
+    background-image: radial-gradient(circle at top left, #f40009, transparent 60%),
+    radial-gradient(circle at bottom left, #f40009, transparent 60%),
+    radial-gradient(circle at top right, #f40009, transparent 60%),
+    radial-gradient(circle at bottom right, #f40009, transparent 60%);
+}
+
+.coca-cola-logo::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.coca-cola-logo::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65%;
+    height: 65%;
+    background-image: radial-gradient(circle at top left, #7f0e05, transparent 60%),
+    radial-gradient(circle at bottom left, #7f0e05, transparent 60%),
+    radial-gradient(circle at top right, #7f0e05, transparent 60%),
+    radial-gradient(circle at bottom right, #7f0e05, transparent 60%);
+    border-radius: 50%;
+}
+
+.coca-cola-logo .logo-top {
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.coca-cola-logo .logo-bottom {
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.coca-cola-logo .logo-left {
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+}
+
+.coca-cola-logo .logo-right {
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #fff;
+}
+
+.coca-cola-logo .ribbon {
+    width: 50%;
+    height: 40%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 50%;
+    clip-path: polygon(0 0, 75% 0, 100% 100%, 0% 100%);
+}
+
+.coca-cola-logo .ribbon::before {
+    content:
