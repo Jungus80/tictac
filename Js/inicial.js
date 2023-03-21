@@ -45,22 +45,5 @@ const winningC = [
 
 
 // check the winner
-function checkGreen(value,value2){
-    for(i=0;i<winningC.length;i++){
-        enter=winningC[i]
-        let  result = value.filter(search=>enter.includes(search)).sort()
-        if(result.length===3){
-            console.log(result);
-        }
-    }
-    for(i=0;i<winningC.length;i++){
-        enter=winningC[i]
-        let  result = value2.filter(search=>enter.includes(search)).sort()
-        if(result.length===3){
-            console.log(result);
-        }
 
-    }
-
-}
 
