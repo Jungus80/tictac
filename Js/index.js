@@ -3,6 +3,7 @@ let  turn  = localStorage.getItem('color');
 // recorrwe
 square = document.querySelectorAll('.grid-item')
 game_contain = document.getElementById('game_container')
+span = document.getElementById('winner')
 
 var  arrayG = []
 var arrayR = []
@@ -29,7 +30,7 @@ function handeclick (event){
 square.forEach(valor=>valor.addEventListener('click',handeclick)) // forEach busca en lista de elementos
 
 // winning conditions
-const winningC = [
+const solutions = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -43,18 +44,20 @@ const winningC = [
 
 // check the winner
 function winner(value,value2){
-    for(i=0;i<winningC.length;i++){
-        enter=winningC[i]
+    for(i=0;i<solutions.length;i++){
+        enter=solutions[i]
         let  result = value.filter(search=>enter.includes(search)).sort()
         if(result.length===3){
             game_contain.style.display = 'none'
+            span.textContent = 'RED'
         }
     }
-    for(i=0;i<winningC.length;i++){
-        enter=winningC[i]
+    for(i=0;i<solutions.length;i++){
+        enter=solutions[i]
         let  result = value2.filter(search=>enter.includes(search)).sort()
         if(result.length===3){
-
+            game_contain.style.display = "none"
+            span.textContent = 'GREEN'
         }
     }
 
