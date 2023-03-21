@@ -2,8 +2,7 @@
 let  turn  = localStorage.getItem('color');
 // recorrwe
 square = document.querySelectorAll('.grid-item')
-ex = document.getElementById('equis')
-circle = document.getElementById('circulo')
+game_contain = document.getElementById('game_container')
 
 var  arrayG = []
 var arrayR = []
@@ -25,7 +24,7 @@ function handeclick (event){
         arrayR.push(valorred);
         arrayG.sort()
     }
-    checkGreen(arrayR,arrayG)
+    winner(arrayR,arrayG)
 }
 square.forEach(valor=>valor.addEventListener('click',handeclick)) // forEach busca en lista de elementos
 
@@ -43,21 +42,19 @@ const winningC = [
 
 
 // check the winner
-function checkGreen(value,value2){
+function winner(value,value2){
     for(i=0;i<winningC.length;i++){
         enter=winningC[i]
         let  result = value.filter(search=>enter.includes(search)).sort()
         if(result.length===3){
-            console.log(result);
+            game_contain.style.display = 'none'
         }
     }
     for(i=0;i<winningC.length;i++){
         enter=winningC[i]
         let  result = value2.filter(search=>enter.includes(search)).sort()
         if(result.length===3){
-            console.log(result);
-        }else{
-            console.log('No hay nada ')
+
         }
     }
 
