@@ -8,18 +8,18 @@ let arrayR = [];
 
 // Cambio de color y cordenadas de cada color
 function handleClick(event) {
-    const { target } = event; // DESTRUCTURATION 
+    const { target } = event; // DESTRUCTURATION
 
     if (target.style.backgroundColor) { 
         return;
     }
 
     target.style.backgroundColor = turn;
-    turn = turn === 'green' ? 'red' : 'green';
+    turn = turn === 'green' ? 'red' : 'green' // recursive  condicional
     count++;
 
     if (turn !== 'green') {
-        arrayG.push(Number(target.dataset.value));
+        arrayG.push(Number(target.dataset.value)); // get acces to dom data
     } else {
         arrayR.push(Number(target.dataset.value));
     }
