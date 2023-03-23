@@ -1,35 +1,37 @@
+let turn = localStorage.getItem('color');
+const squares = document.querySelectorAll('.grid-item');
+const gameContainer = document.getElementById('game_container');
+const winnerSpan = document.getElementById('winner');
+let count = 0;
+let arrayG = [];
+let arrayR = [];
 
-let  turn  = localStorage.getItem('color');
-// recorrwe
-square = document.querySelectorAll('.grid-item')
-game_contain = document.getElementById('game_container')
-span = document.getElementById('winner')
+// Cambio de color y cordenadas de cada color
+function handleClick(event) {
+    const { target } = event; // DESTRUCTURATION 
 
-var  arrayG = []
-var arrayR = []
-
-// cambio de color y cordenadas de cada color
-function handeclick (event){
-    if (event.target.style.backgroundColor !== 'green' && event.target.style.backgroundColor !== 'red') { // evita el cambio de color por click
-        event.target.style.backgroundColor = turn;
-        turn = turn === 'green' ? 'red' : 'green';
+    if (target.style.backgroundColor) { 
+        return;
     }
+
+    target.style.backgroundColor = turn;
+    turn = turn === 'green' ? 'red' : 'green';
+    count++;
 
     if (turn !== 'green') {
-        valogreen = Math.floor(event.target.getAttribute('data-value'));
-        arrayG.push(valogreen);
-        arrayG.sort();
-
+        arrayG.push(Number(target.dataset.value));
     } else {
-        valorred = Math.floor(event.target.getAttribute('data-value'));
-        arrayR.push(valorred);
-        arrayG.sort()
+        arrayR.push(Number(target.dataset.value));
     }
-    winner(arrayR,arrayG)
-}
-square.forEach(valor=>valor.addEventListener('click',handeclick)) // forEach busca en lista de elementos
 
-// winning conditions
+    winner(arrayR, arrayG);
+    checkDraw();
+    target.removeEventListener('click', handleClick);
+}
+
+squares.forEach(square => square.addEventListener('click', handleClick));
+
+// Winning conditions
 const solutions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -41,26 +43,33 @@ const solutions = [
     [2, 4, 6]
 ];
 
-
-// check the winner
-function winner(value,value2){
-    for(i=0;i<solutions.length;i++){
-        enter=solutions[i]
-        let  result = value.filter(search=>enter.includes(search)).sort()
-        if(result.length===3){
-            game_contain.style.display = 'none'
-            span.textContent = 'RED'
-        }
-    }
-    for(i=0;i<solutions.length;i++){
-        enter=solutions[i]
-        let  result = value2.filter(search=>enter.includes(search)).sort()
-        if(result.length===3){
-            game_contain.style.display = "none"
-            span.textContent = 'GREEN'
+// Check the winner
+function winner(value, value2) {
+    for (let i = 0; i < solutions.length; i++) {
+        const enter = solutions[i];
+        const result = value.filter(search => enter.includes(search)).sort();
+        if (result.length === 3) {
+            gameContainer.style.display = 'none';
+            winnerSpan.textContent = 'RED'
+            return;
         }
     }
 
+    for (let i = 0; i < solutions.length; i++) {
+        const enter = solutions[i];
+        const result = value2.filter(search => enter.includes(search)).sort();
+        if (result.length === 3) {
+            gameContainer.style.display = 'none';
+            winnerSpan.textContent = 'GREEN'
+            return;
+        }
+    }
 }
 
-
+// Check the draw case
+function checkDraw() {
+    if (count === 9) {
+        gameContainer.style.display = 'none';
+        winnerSpan.textContent = 'DRAW';
+    }
+}
